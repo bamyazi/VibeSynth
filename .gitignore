@@ -1,0 +1,16 @@
+# Backups
+*.backup
+*.old
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor files
+.vscode/
+*.swp
+*.swo
+
+# Python
+__pycache__/
+*.py[cod]

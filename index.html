@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Chiptune 3-Voice + 808 Drum 16-Step Sequencer</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app">
+    <h1>Chiptune 3-Voice + 808 Drum Loop</h1>
+    <div class="subtitle">
+      3 synth voices (square / triangle / noise + filters) • 808-style drum machine • 16-step loop
+    </div>
+
+    <div class="controls">
+      <div class="control-group">
+        <button id="playBtn">▶ Play</button>
+      </div>
+
+      <div class="control-group">
+        <label for="bpmInput">Tempo</label>
+        <input type="range" id="bpmInput" min="60" max="200" value="120" />
+        <span class="bpm-value"><span id="bpmDisplay">120</span> BPM</span>
+        <span class="loop-duration" id="loopDuration">(2.0s loop)</span>
+      </div>
+
+      <div class="control-group">
+        <button class="secondary" id="mixerTabBtn">🎚️ Mixer</button>
+      </div>
+
+      <div class="control-group">
+        <button class="secondary" id="savePatternBtn">💾 Save Song</button>
+      </div>
+
+      <div class="control-group">
+        <button class="secondary" id="loadSongBtn">📂 Load Song</button>
+      </div>
+
+      <div class="control-group">
+        <button class="secondary" id="exportWavBtn">🎵 Export WAV</button>
+      </div>
+
+      <div class="control-group">
+        <label for="presetSelect">Quick Preset</label>
+        <select id="presetSelect">
+          <option value="">-- Load Preset --</option>
+        </select>
+      </div>
+
+      <div class="control-group">
+        <button class="secondary" id="clearCurrentBtn">Clear Current</button>
+      </div>
+    </div>
+
+    <!-- Mixer Panel -->
+    <div id="mixerPanel" class="mixer-panel" style="display: none;">
+      <div class="mixer-header">
+        <h2>Mixer</h2>
+        <button class="secondary small" id="closeMixerBtn">✕ Close</button>
+      </div>
+      <div id="mixerChannels" class="mixer-channels"></div>
+    </div>
+
+    <div id="songContainer">
+      <div class="song-arranger">
+        <div class="song-arranger-header">
+          <h2>Song Arranger (32 Loops)</h2>
+          <p class="song-instructions">Drag patterns from the library to song slots. Double-click a slot to remove. Click a pattern to edit it.</p>
+        </div>
+        <div class="song-layout">
+          <div class="pattern-library-section">
+            <h3>Pattern Library</h3>
+            <div class="pattern-controls">
+              <button class="secondary small" id="newPatternBtn">➕ New</button>
+              <button class="secondary small" id="deletePatternBtn">🗑️ Delete</button>
+            </div>
+            <div id="patternLibrary" class="pattern-library"></div>
+          </div>
+          <div class="song-slots-section">
+            <h3>Song Sequence (32 Loops)</h3>
+            <div id="songSlots" class="song-slots"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="voices-container" id="voicesContainer"></div>
+
+    <div class="drum-machine" id="drumMachine">
+      <div class="drum-header">
+        <div class="drum-title">
+          <span class="drum-index-tag">DR</span>808-Style Drum Machine
+        </div>
+      </div>
+      <div class="sequencer" id="drumSequencer"></div>
+    </div>
+
+    <div class="footer">
+      <div>
+        <span class="status-led" id="statusLed"></span>
+        <span id="statusText">Stopped</span>
+      </div>
+      <div>
+        Tip: 3 voices for bass/lead/chords + drums for groove. Draw patterns, tweak filters, save them, and create songs!
+      </div>
+    </div>
+  </div>
+
+  <!-- Pattern Name Modal -->
+  <div id="patternNameModal" class="modal" style="display: none;">
+    <div class="modal-content">
+      <h3 id="modalTitle">Enter Pattern Name</h3>
+      <input type="text" id="patternNameInput" placeholder="Pattern name..." />
+      <div class="modal-buttons">
+        <button id="modalSaveBtn">Save</button>
+        <button class="secondary" id="modalCancelBtn">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="lib/sequencer.js"></script>
+</body>
+</html>
