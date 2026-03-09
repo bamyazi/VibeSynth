@@ -2,6 +2,8 @@
 
 A browser-based 16-step chiptune sequencer with 3 synth voices and 808-style drums. Built with vanilla JavaScript and the Web Audio API.
 
+**[Try it live on GitHub Pages](https://bamyazi.github.io/VibeSynth/)**
+
 ## Features
 
 - **3 Synth Voices** with square, triangle, and noise waveforms
